@@ -12,12 +12,21 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "chats")
+@Data
 public class Chats implements Serializable {
 
-    // @Dataを使わないこと
+    //方法１
+    // @Dataを使わない
     // toStringメソッドをオーバーライドしないこと
+
+    //方法２
+    // @Dataを使う
+    // toStringメソッドをオーバーライドしないこと
+    // Joinする側(子要素)に、ToString.Excludeを追加する
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,54 +47,4 @@ public class Chats implements Serializable {
     @JoinColumn(name = "id", insertable = false, updatable = false)
     private SignUp signup;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public SignUp getSignup() {
-        return signup;
-    }
-
-    public void setSignup(SignUp signup) {
-        this.signup = signup;
-    }
-
-    
-    
 }

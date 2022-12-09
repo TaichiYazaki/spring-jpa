@@ -12,13 +12,22 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Table(name = "signup")
+@Data
 public class SignUp implements Serializable {
 
-    // @Dataを使わないこと
+    //方法１
+    // @Dataを使わない
     // toStringメソッドをオーバーライドしないこと
+
+    //方法２
+    // @Dataを使う
+    // toStringメソッドをオーバーライドしないこと
+    // Joinする側(子要素)に、ToString.Excludeを追加する
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,55 +46,8 @@ public class SignUp implements Serializable {
     @Column(name = "file_name")
     private String fileName;
 
-    @OneToMany(mappedBy="signup", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "signup", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Chats> chats;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public List<Chats> getChats() {
-        return chats;
-    }
-
-    public void setChats(List<Chats> chats) {
-        this.chats = chats;
-    }
-   
 }
