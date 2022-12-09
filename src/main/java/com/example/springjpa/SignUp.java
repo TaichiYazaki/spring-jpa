@@ -29,6 +29,10 @@ public class SignUp implements Serializable {
     // toStringメソッドをオーバーライドしないこと
     // Joinする側(子要素)に、ToString.Excludeを追加する
 
+    // 参考
+    // https://blogenist.jp/2020/12/17/11185/#ToStringExclude
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
