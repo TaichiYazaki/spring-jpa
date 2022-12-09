@@ -27,9 +27,11 @@ public class Chats implements Serializable {
     // @Dataを使う
     // toStringメソッドをオーバーライドしないこと
     // Joinする側(子要素)に、ToString.Excludeを追加する
+    // @JsonIgnoreを追加する
 
     // 参考
     // https://blogenist.jp/2020/12/17/11185/#ToStringExclude
+    // https://stackoverflow.com/questions/67526700/com-fasterxml-jackson-databind-ser-std-collectionserializer-serializecollection
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

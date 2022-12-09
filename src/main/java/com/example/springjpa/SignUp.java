@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -28,9 +30,11 @@ public class SignUp implements Serializable {
     // @Dataを使う
     // toStringメソッドをオーバーライドしないこと
     // Joinする側(子要素)に、ToString.Excludeを追加する
+    // @JsonIgnoreを追加する
 
     // 参考
     // https://blogenist.jp/2020/12/17/11185/#ToStringExclude
+    // https://stackoverflow.com/questions/67526700/com-fasterxml-jackson-databind-ser-std-collectionserializer-serializecollection
 
 
     @Id
@@ -51,7 +55,8 @@ public class SignUp implements Serializable {
     private String fileName;
 
     @OneToMany(mappedBy = "signup", cascade = CascadeType.ALL)
-    @ToString.Exclude
+    @ToString.Exclude // @Dataを利用した場合、ハッシュコードエラーを回避するために必要
+    @JsonIgnore // jackson.databindのエラーを回避するために必要
     private List<Chats> chats;
 
 }
